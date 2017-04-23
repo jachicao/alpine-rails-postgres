@@ -1,4 +1,5 @@
 FROM ruby:alpine
+
 ENV BUILD_PACKAGES="curl-dev ruby-dev build-base bash" \
     DEV_PACKAGES="zlib-dev libxml2-dev libxslt-dev tzdata yaml-dev postgresql-dev" \
     RUBY_PACKAGES="ruby-json yaml nodejs"
@@ -18,4 +19,4 @@ ADD Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install --jobs 20 --retry 5
 ADD . /myapp
 
-RUN bundle exec rake assets:precompile
+CMD bundle exec puma -C config/puma.rb
