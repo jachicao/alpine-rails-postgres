@@ -19,4 +19,4 @@ ADD Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install --jobs 20 --retry 5
 ADD . /myapp
 
-CMD bundle exec puma -C config/puma.rb
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
